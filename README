@@ -3,6 +3,9 @@
 #Switch to root user
 sudo su -
 
+#Confirm the current state of THP
+cat /sys/kernel/mm/transparent_hugepage/enabled
+
 #Create file using vi command and paste in the code below.
 vi /etc/systemd/system/disable-transparent-huge-pages.service
 [Unit]
