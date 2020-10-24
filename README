@@ -1,0 +1,51 @@
+#DISABLE THP
+
+#Switch to root user
+sudo su -
+
+#Create file using vi command and paste in the code below.
+vi /etc/systemd/system/disable-transparent-huge-pages.service
+[Unit]
+Description=Disable Transparent Huge Pages (THP)
+DefaultDependencies=no
+After=sysinit.target local-fs.target
+Before=mongod.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo never | tee /sys/kernel/mm/transparent_hugepage/enabled > /dev/null'
+
+[Install]
+WantedBy=basic.target
+
+#Reload the service
+sudo systemctl daemon-reload
+
+#Start the service
+sudo systemctl start disable-transparent-huge-pages
+
+#Confirm THP is disabled
+cat /sys/kernel/mm/redhat_transparent_hugepage/enabled
+
+#Configure service to run at boot
+sudo systemctl enable disable-transparent-huge-pages
+
+
+#INCREASE ULIMITS
+
+#Swith to root user
+sudo su -
+
+#check open files u limits
+ulimit -a
+
+#open limits.conf and add the following lines
+vi /etc/security/limits.conf
+*     soft   nofile  65535
+*     hard   nofile  65535 
+
+#Reboot to apply changes
+reboot
+
+#Confirm open files u limits have bee increased
+ulimit -a
