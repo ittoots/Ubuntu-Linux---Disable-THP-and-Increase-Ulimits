@@ -25,7 +25,7 @@ sudo systemctl daemon-reload
 sudo systemctl start disable-transparent-huge-pages
 
 #Confirm THP is disabled
-cat /sys/kernel/mm/redhat_transparent_hugepage/enabled
+cat /sys/kernel/mm/transparent_hugepage/enabled
 
 #Configure service to run at boot
 sudo systemctl enable disable-transparent-huge-pages
