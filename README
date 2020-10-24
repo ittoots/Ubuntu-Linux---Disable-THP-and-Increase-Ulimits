@@ -48,8 +48,35 @@ ulimit -a
 
 #open limits.conf and add the following lines
 vi /etc/security/limits.conf
-*     soft   nofile  65535
-*     hard   nofile  65535 
+
+*  soft  fsize    -1
+*  hard  fsize    -1
+*  soft  nofile   65535
+*  hard  nofile   65535
+*  soft  nproc    65535
+*  hard  nproc    65535
+root  soft  fsize    -1
+root  hard  fsize    -1
+root  soft  nofile   165535
+root  hard  nofile   165535
+root  soft  nproc    65535
+root  hard  nproc    65535
+
+#Add the following parameters settings to system.conf
+/etc/systemd/system.conf
+DefaultLimitNOFILE=65535
+DefaultLimitNPROC=65535
+DefaultLimitDATA=8589934592
+DefaultLimitFSIZE=infinity
+DefaultTasksMax=8192
+
+#Add the same code parameters settings to user.conf
+/etc/systemd/user.conf
+DefaultLimitNOFILE=65535
+DefaultLimitNPROC=65535
+DefaultLimitDATA=8589934592
+DefaultLimitFSIZE=infinity
+DefaultTasksMax=8192
 
 #Reboot to apply changes
 reboot
