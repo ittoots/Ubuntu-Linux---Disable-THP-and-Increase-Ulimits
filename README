@@ -63,7 +63,7 @@ root  soft  nproc    65535
 root  hard  nproc    65535
 
 #Add the following parameters settings to system.conf
-/etc/systemd/system.conf
+vi /etc/systemd/system.conf
 DefaultLimitNOFILE=65535
 DefaultLimitNPROC=65535
 DefaultLimitDATA=8589934592
@@ -71,7 +71,7 @@ DefaultLimitFSIZE=infinity
 DefaultTasksMax=8192
 
 #Add the same code parameters settings to user.conf
-/etc/systemd/user.conf
+vi /etc/systemd/user.conf
 DefaultLimitNOFILE=65535
 DefaultLimitNPROC=65535
 DefaultLimitDATA=8589934592
