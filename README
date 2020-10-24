@@ -27,11 +27,15 @@ sudo systemctl daemon-reload
 #Start the service
 sudo systemctl start disable-transparent-huge-pages
 
+#Configure service to run at boot
+sudo systemctl enable disable-transparent-huge-pages
+
+#Reboot 
+reboot
+
 #Confirm THP is disabled
 cat /sys/kernel/mm/transparent_hugepage/enabled
 
-#Configure service to run at boot
-sudo systemctl enable disable-transparent-huge-pages
 
 
 #INCREASE ULIMITS
