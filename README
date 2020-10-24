@@ -57,8 +57,8 @@ vi /etc/security/limits.conf
 *  hard  nproc    65535
 root  soft  fsize    -1
 root  hard  fsize    -1
-root  soft  nofile   165535
-root  hard  nofile   165535
+root  soft  nofile   65535
+root  hard  nofile   65535
 root  soft  nproc    65535
 root  hard  nproc    65535
 
